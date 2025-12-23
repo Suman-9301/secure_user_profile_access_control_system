@@ -1,111 +1,137 @@
-Secure User Profile & Access Control System
-📌 Project Overview
+# Secure User Profile & Access Control System
 
-This project implements Assignment 1: Secure User Profile & Access Control System, which focuses on building a secure identity management microservice. The system allows users to register, log in, and securely view their profile information.
+## Description
 
-The backend is designed using JWT-based stateless authentication and AES-256 encryption to protect sensitive user data such as Aadhaar/ID numbers at rest. The frontend provides a React-based user interface for authentication and profile management with proper validation and error handling.
+This project implements a secure user identity management system that supports user registration, authentication, and protected profile access. The application follows a stateless authentication model using JSON Web Tokens (JWT) and encrypts sensitive user information using AES-256 before storing it in the database.
 
-Implementation Approach
+The system is implemented as a backend microservice with a React-based frontend for user interaction.
 
-Backend APIs built using Node.js and Express
+---
 
-User data stored in MongoDB
+## Features
 
-Passwords hashed using bcrypt
+- User registration and authentication
+- JWT-based stateless authentication
+- Password hashing using bcrypt
+- AES-256 encryption for sensitive user data (Aadhaar / ID)
+- Protected API routes
+- React-based frontend with form validation
+- Secure profile access for authenticated users only
 
-Aadhaar/ID number encrypted using AES-256
+---
 
-JWT used for secure access to protected routes
+## Technology Stack
 
-Frontend developed in React.js with form validation and protected dashboard access
+### Backend
+- Node.js
+- Express.js
+- MongoDB
+- JWT
+- bcrypt
+- AES-256 encryption
 
-⚙️ Setup / Run Instructions
-Prerequisites
+### Frontend
+- React.js
+- JavaScript
+- HTML / CSS
 
-Node.js (v16+ recommended)
+---
 
-MongoDB (local or cloud)
+## Setup Instructions
 
-npm
+### Prerequisites
 
-🔹 Backend Setup
+- Node.js (v16 or later)
+- MongoDB
+- npm
+
+---
+
+### Backend Setup
+
+```
 cd backend
 npm install
+Create a .env file in the backend directory with the following variables:
 
-⚠️ ENCRYPTION_KEY must be exactly 32 characters for AES-256.
+MONGO_URI=<mongodb_connection_string>
+JWT_SECRET=<jwt_secret>
+ENCRYPTION_KEY=<32_character_encryption_key>
+Note: The encryption key must be exactly 32 characters for AES-256.
 
 Start the backend server:
 
 node server.js
-
-
-Backend will run at:
-
+The backend server will run on:
 http://localhost:5000
-
-🔹 Frontend Setup
+```
+---
+### Frontend Setup
+```
 cd frontend
 npm install
 npm start
-
-
-Frontend will run at:
-
+The frontend application will run on:
 http://localhost:3000
-
-📡 API Documentation
-Authentication & Profile APIs
+```
+---
+### API Endpoints
+```
+Authentication and Profile
 Method	Endpoint	Description
 POST	/api/register	Register a new user
 POST	/api/login	Authenticate user and return JWT
-GET	/api/profile	Fetch authenticated user profile
-
-🔐 Authorization Header (Protected APIs)
-
+GET	/api/profile	Retrieve authenticated user profile
+```
+---
+### Authorization
+```
+Protected routes require the following HTTP header:
 Authorization: Bearer <JWT_TOKEN>
-
-🗄️ Database Schema
-MongoDB – User Collection
+Database Schema
+User Collection (MongoDB)
+json
+Copy code
 {
-  name: String,
-  email: String,
-  password: String,        // Hashed using bcrypt
-  aadhaar_encrypted: String, // Encrypted using AES-256
-  createdAt: Date
+  "name": "String",
+  "email": "String",
+  "password": "String",
+  "aadhaar_encrypted": "String",
+  "createdAt": "Date"
 }
+Passwords are hashed using bcrypt.
+Aadhaar / ID numbers are encrypted using AES-256 before storage.
+```
+---
+### Security Considerations
 
+Stateless authentication using JWT
+Password hashing to prevent plaintext storage
+Encryption of sensitive personal data at rest
+Access to protected resources restricted to authenticated users
 
-Sensitive fields such as Aadhaar/ID number are encrypted before storage and decrypted only when returned to authenticated users.
+---
+### AI-Assisted Tasks
 
-🤖 AI Tool Usage Log
-AI-Assisted Tasks
-
-AI-based development tools (ChatGPT) were used selectively for guidance and understanding.
-
+AI-based development tools (ChatGPT) were used selectively for guidance and understanding, not for direct end-to-end code generation.
 AI assistance was used for:
-
 Understanding JWT-based authentication flow
-
 Clarifying AES-256 encryption and decryption concepts
-
 Discussing regular expressions for email and Aadhaar validation
-
 Guidance on structuring backend APIs
-
 Conceptual help in writing unit test cases for encryption logic
-
 Formatting and structuring this README documentation as per submission guidelines
 
-All implementation decisions and code integration were performed manually.
+---
 
-Effectiveness Score
+### Effectiveness Score
 
 Score: 3 / 5
 
 Justification:
 AI tools were helpful in clarifying security concepts and improving documentation efficiency. However, significant manual effort was required for implementation, debugging environment issues, and integrating backend and frontend components.
 
-
-📤 Submission Details
-
-Public GitHub Repository: https://github.com/Suman-9301/secure_user_profile_access_control_system
+---
+### Repository
+GitHub Repository:
+https://github.com/Suman-9301/secure_user_profile_access_control_system
